@@ -20,9 +20,9 @@ int main()
 	opt.init_reconn_period_ = boost::chrono::seconds(10);
 	opt.init_reconn_try_ = 3;
 
-	gce::connect(base, gce::atom("game_server"), "tcp://127.0.0.1:12345", false, opt);
+	gce::connect(base, gce::atom("game_server"), "tcp://127.0.0.1:7001", false, opt);
 
-	gce_server svr(ctx_, base, "127.0.0.1", 10001);
+	gce_server svr(ctx_, base, "127.0.0.1", 6001);
 
 	GateServer gateServer(svr);
 

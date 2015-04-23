@@ -1,14 +1,14 @@
 #include "CommDef.h"
-#include "GameServer.h"
+#include "LoginServer.h"
 #include <gce/actor/all.hpp>
 
 int main()
 {
-	LOG_INSTANCE->Initial("GameServer.log");
+	LOG_INSTANCE->Initial("LoginServer.log");
 	LOG_INSTANCE->SetLogPriority(Library::ELogType_All & ~Library::ELogType_Console_Debug);
 
 	gce::attributes attr;
-	attr.id_ = gce::atom("game_server");
+	attr.id_ = gce::atom("login_server");
 
 	gce::context ctx_(attr);
 
@@ -18,12 +18,12 @@ int main()
 	opt.heartbeat_period_ = boost::chrono::seconds(15);
 	opt.heartbeat_count_ = 5;
 
-	gce::bind(base_, "tcp://127.0.0.1:7001");
+	gce::bind(base_, "tcp://127.0.0.1:5001");
 
-	GameServer gameServer;
-	gameServer.Start();
+	LoginServer server;
+	server.Start();
 
-	gameServer.Run();
+	server.Run();
 
 	return 0;
 }
